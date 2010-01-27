@@ -10,13 +10,14 @@
  Especially, it implements both the iterative glm procedure for the Poisson linear model and the training procedure of the MART model.
  The cross-validation for both of the methods is also implemented.
  Moreover, in folder \code{data_top100}, data files of the top 100 genes and surrounding sequences of all the eight sub-datasets are provided.
+ In Version 1.1, the Poisson linear model with dinucleotide composition is also implemented.
 }
 \details{
 \tabular{ll}{
 Package: \tab mseq\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2009-11-30\cr
+Version: \tab 1.1\cr
+Date: \tab 2010-01-27\cr
 License: \tab GPL (version 2 or newer)\cr
 LazyData: \tab yes\cr
 }
@@ -33,6 +34,10 @@ LazyData: \tab yes\cr
  \code{martTrain.R}: Train the MART model.\cr
  \code{martPred.R}: Get the predicted log sequencing preferences by the trained MART model.\cr
  \code{martCV.R}: Get the cross-validation R squared for MART.\cr
+ \code{expData2nt.R}: Expand the surrounding sequences in the original file, dinucleotide composition included.\cr
+ \code{iterGlm2nt.R}: Fit the Poisson linear model with dinucleotide composition by iteratively fitting glm and gene expression levels.\cr
+ \code{glmPred2nt.R}: Predict the log preferences using the trained iterative glm model with dinucleotide composition.\cr
+ \code{iterGlmCV2nt.R}: Get the cross-validation R squared for iterative glm with dinucleotide composition.\cr
 }
 \author{
 Jun Li
@@ -95,6 +100,21 @@ Maintainer: Jun Li <junli07@stanford.edu>
  null.count <- getNullCount(test.data)
  null.dev <- getDev(null.count, test.data$count)
  R_sq <- 1 - mart.dev / null.dev
+ 
+ 
+ #### Poissong linear model using dinucleotide composition
+ # read and expand the data
+ data(g1_part) # for real data, please use read.csv, like g1 <- read.csv("g1.csv")
+ data <- expData2nt(g1_part, 2, 1) # here the surrounding sequences is only of length 3. In real datasets, it should be larger.
+
+ # get the CV R squared for Poisson linear model
+ R_sq <- iterGlmCV2nt(data)
+
+ # train and predict by Poisson linear model
+ train.data <- data[data$index < 6, ]
+ test.data <- data[data$index >= 6, ]
+ train.glm <- iterGlm2nt(train.data)
+ pred.pref <- exp(glmPred2nt(train.glm, test.data))
 }
 \keyword{ package }
 \keyword{ models }

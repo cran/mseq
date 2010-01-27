@@ -1,13 +1,14 @@
-\name{expData}
-\alias{expData}
-\title{ expand the surrounding sequences }
+\name{expData2nt}
+\alias{expData2nt}
+\title{ expand the surrounding sequences, including both the single nucleotide and dinucleotide composition }
 \description{
  The original data file only contains one sequence. This function will 
- expand for each retained position its surrounding sequence. The output
+ expand for each retained position its surrounding sequence, including
+ both the single nucleotide and dinucleotide composition. The output
  data frame can be directly used by Poisson linear model and MART.
 }
 \usage{
-expData(oriData, llen, rlen)
+expData2nt(oriData, llen, rlen)
 }
 \arguments{
   \item{oriData}{ the original data frame read directly from the file }
@@ -20,12 +21,12 @@ expData(oriData, llen, rlen)
 }
 \value{
  a data frame including the counts and surrounding sequences, which can be directly used by Poisson linear model and MART.
- The number of rows are the number of \code{0}s in \code{oriData$tag}. The number of columns are \code{llen + rlen + 2}, with names 
- \code{index, count, pMllen, ..., pM1, p0, p1, ..., p(rlen-1)}, where \code{p} means position, \code{M} means minus.
+ The number of rows are the number of \code{0}s in \code{oriData$tag}. The number of columns are \code{2 + (llen + rlen) * 3 + (llen + rlen - 1) * 9}, with names 
+ \code{index, count, pMllen.A, pMllen.C, pMllen.G, ..., (prlen-1).A, (prlen-1).C, (prlen-1).G, pMllen.pM(llen-1).TA, ..., p(rlen-2).p(rlen-1).CC}, where \code{p} means position, \code{M} means minus.
 }
 \examples{
  # read and expand the data
  data(g1_part) # for real data, please use read.csv, like g1 <- read.csv("g1.csv")
- data <- expData(g1_part, 2, 3) # In real datasets, the surrounding sequences should be set longer.
+ data <- expData2nt(g1_part, 2, 1) # In real datasets, the surrounding sequences should be set longer.
 }
 \keyword{ models }

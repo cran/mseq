@@ -1,1 +1,1 @@
-export(expData, getDev, getNullCount, getPredCount, glmPred, iterGlm, iterGlmCV, martCV, martPred, martTrain, plotCoef, plotCounts)
+export(expData, getDev, getNullCount, getPredCount, glmPred, iterGlm, iterGlmCV, martCV, martPred, martTrain, plotCoef, plotCounts, expData2nt, glmPred2nt, iterGlmCV2nt, iterGlm2nt)
