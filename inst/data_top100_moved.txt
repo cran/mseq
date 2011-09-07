@@ -1,0 +1,6 @@
+As we were asked not to include large datasets (mseq 1.1 was among the top 50 largest on CRAN!),
+we moved the data to:
+
+http://www.stanford.edu/~junli07/research.html
+
+Sorry for the inconvenience!

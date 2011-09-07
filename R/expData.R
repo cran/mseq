@@ -21,9 +21,18 @@ function(oriData, llen, rlen)
 		}
 	}
 
-	sseq <- factor(sseq, levels = c('T', 'A', 'C', 'G'))
+	# the line below is commented for Version 1.2
+#	sseq <- factor(sseq, levels = c('T', 'A', 'C', 'G'))
+
 	sseq <- matrix(sseq, ncol = llen + rlen, byrow = TRUE)
 	data <- data.frame(index = index, count = count, sseq)
+
+	## the three lines below are added for Version 1.2	
+	for (i in 3 : (llen + rlen + 2))
+	{
+		data[, i] <- factor(as.character(data[, i]), levels=c('T', 'A', 'C', 'G'))
+	}
+	
 	cname <- character(2 + llen + rlen)
 	cname[1] <- "index"
 	cname[2] <- "count"

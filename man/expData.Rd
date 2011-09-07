@@ -16,7 +16,7 @@ expData(oriData, llen, rlen)
 }
 \details{
  Note that we will not check the format of \code{oriData} here. Please generate the original data file carefully.
- Please refer to \code{Readme_format.txt} in folder \code{data_top100} for the details of the format.
+ Please refer to \code{Readme_format.txt} for the details of the format.
 }
 \value{
  a data frame including the counts and surrounding sequences, which can be directly used by Poisson linear model and MART.

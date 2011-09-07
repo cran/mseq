@@ -10,14 +10,15 @@
  Especially, it implements both the iterative glm procedure for the Poisson linear model and the training procedure of the MART model.
  The cross-validation for both of the methods is also implemented.
  Moreover, in folder \code{data_top100}, data files of the top 100 genes and surrounding sequences of all the eight sub-datasets are provided.
- In Version 1.1, the Poisson linear model with dinucleotide composition is also implemented.
+ In Version 1.2, these datasets have been moved to \code{http://www.stanford.edu/~junli07/research.html} to make this R package smaller (mseq 1.1 was among the top 50 largest on CRAN!).
+ In Version 1.1 and later, the Poisson linear model with dinucleotide composition is also implemented.
 }
 \details{
 \tabular{ll}{
 Package: \tab mseq\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2010-01-27\cr
+Version: \tab 1.2\cr
+Date: \tab 2011-09-7\cr
 License: \tab GPL (version 2 or newer)\cr
 LazyData: \tab yes\cr
 }
